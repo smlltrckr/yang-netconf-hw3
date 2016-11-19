@@ -9,8 +9,6 @@ PYANG = https\://github.com/mbj4668/pyang.git
 REST = https\://github.com/CESNET/libnetconf.git https\://github.com/CESNET/netopeer.git https\://github.com/mbj4668/pyang.git
 TARGETS = dependencies pyang libnetconf netopeer openyuma
 
-.PHONY: rest
-
 CFLAGS = -Wall -g -c
 
 all: $(TARGETS)
@@ -53,20 +51,12 @@ netopeer:
 
 openyuma: 
 	git clone $(OPENYUMA)
+	# https://github.com/OpenClovis/OpenYuma
 	# setup docker
-	
+	cd OpenYuma/ && sudo docker build -t openyuma .
+
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
 # http://seguesoft.com/how-to-set-up-netopeer-server-to-use-with-netconfc
-
-
-# OpenYuma
-# sudo apt-get install libxml2-dev libxmlt1-dev libssl-dev
-# tar -xvf libssh2-1.8.0.tar.gz
-# mv libssh2-1.8.0 libssh2
-# cd libssh2
-# ./configure
-# make
-# sudo make install
 
 # libssh
 # wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
