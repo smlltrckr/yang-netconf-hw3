@@ -11,19 +11,24 @@ TARGETS = openyuma libnetconf netopeer pyang
 
 .PHONY: rest
 
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -c
 
 all: $(TARGETS)
 
-openyuma: git clone $(OPENYUMA)
+openyuma: 
+	git clone $(OPENYUMA)
 
-libnetconf: git clone $(LIBNETCONF)
+libnetconf: 
+	git clone $(LIBNETCONF)
 
-netopeer: git clone $(NETOPEER)
+netopeer: 
+	git clone $(NETOPEER)
 
-pyang: git clone $(PYANG)
+pyang: 
+	git clone $(PYANG)
 
-rest: $(GG) clone $(REST) 
+rest: 
+	$(GG) clone $(REST) 
 # OpenYuma
 # sudo apt-get install libxml2-dev libxmlt1-dev libssl-dev
 # tar -xvf libssh2-1.8.0.tar.gz
