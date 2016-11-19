@@ -7,26 +7,13 @@ LIBNETCONF = https\://github.com/CESNET/libnetconf.git
 NETOPEER = https\://github.com/CESNET/netopeer.git
 PYANG = https\://github.com/mbj4668/pyang.git
 REST = https\://github.com/CESNET/libnetconf.git https\://github.com/CESNET/netopeer.git https\://github.com/mbj4668/pyang.git
-TARGETS = openyuma libnetconf netopeer pyang
+TARGETS = dependencies pyang libnetconf netopeer openyuma
 
 .PHONY: rest
 
 CFLAGS = -Wall -g -c
 
 all: $(TARGETS)
-
-openyuma: 
-	git clone $(OPENYUMA)
-	
-libnetconf: 
-	git clone $(LIBNETCONF)
-	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev libevent-dev xsltproc python-setuptools
-
-netopeer: 
-	git clone $(NETOPEER)
-
-pyang: 
-	git clone $(PYANG)
 
 dependencies:
 	sudo apt-get install libxml2-dev 
@@ -40,13 +27,25 @@ dependencies:
 	sudo apt-get install libevent-dev 
 	sudo apt-get install xsltproc 
 	sudo apt-get install python-setuptools
+	sudo apt-get install zlib1g-dev
+	sudo apt-get install python-libxml2
 	wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
 	unxz libssh-0.7.3.tar.xz
 	tar -xvf libssh-0.7.3.tar
 	cd libssh-0.7.3/ && mkdir build && cd build && cmake .. && make && sudo make install
+
+pyang: 
+	git clone $(PYANG)
+	cd pyang && sudo python setup.py install
+
+libnetconf: 
+	git clone $(LIBNETCONF)
+
+netopeer: 
+	git clone $(NETOPEER)
 	
-rest: 
-	$(GG) clone $(REST) 
+openyuma: 
+	git clone $(OPENYUMA)
 # OpenYuma
 # sudo apt-get install libxml2-dev libxmlt1-dev libssl-dev
 # tar -xvf libssh2-1.8.0.tar.gz
