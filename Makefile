@@ -53,6 +53,8 @@ netopeer:
 
 openyuma: 
 	git clone $(OPENYUMA)
+	# setup docker
+	
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
 # http://seguesoft.com/how-to-set-up-netopeer-server-to-use-with-netconfc
 
