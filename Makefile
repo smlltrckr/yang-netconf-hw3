@@ -13,6 +13,26 @@ CFLAGS = -Wall -g -c
 
 all: $(TARGETS)
 
+install:
+	sudo apt-get update
+	sudo apt-get install apt-transport-https ca-certificates
+	sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+	echo deb https://apt.dockerproject.org/repo ubuntu-xenial main | sudo tee /etc/apt/sources.list.d/docker.list
+	sudo apt-get update
+	apt-cache policy docker-engine
+	sudo apt-get update
+	sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+	sudo apt-get update
+	sudo apt-get install docker-engine
+	sudo service docker start
+	# sudo docker run hello-world
+	git clone $(PYANG)
+	cd pyang/ && sudo python setup.py install
+	git clone $(NETOPEER)
+	cd netopeer/ && sudo docker build -t netopeer .
+	git clone $(OPENYUMA)
+	cd OpenYuma/ && sudo docker build -t openyuma .
+
 dependencies:
 	sudo apt-get install libxml2-dev 
 	sudo apt-get install libxslt-dev
@@ -40,14 +60,17 @@ pyang:
 libnetconf: 
 	git clone $(LIBNETCONF)
 	cd libnetconf/ && ./configure && make && sudo make install
+	# https://github.com/CESNET/libnetconf
 
 netopeer: 
 	git clone $(NETOPEER)
+	# sudo docker build -t netopeer .
 	cd netopeer/server/ && ./configure && make && sudo make install
 	sudo apt-get install libaugeas-dev
 	# cp netopeer/transAPI/cfgsystem/model/ietf-inet-types.yang
 	# sudo cp /home/sam/netopeer/server/config/datastore.xml /usr/local/etc/netopeer/cfgnetopeer/datastore.xml
 	cd netopeer/transAPI/cfgsystem && ./configure && make && sudo make install
+	# https://github.com/CESNET/netopeer
 
 openyuma: 
 	git clone $(OPENYUMA)
