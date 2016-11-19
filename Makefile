@@ -53,8 +53,10 @@ netopeer:
 
 openyuma: 
 	git clone $(OPENYUMA)
-
+# https://docs.docker.com/engine/installation/linux/ubuntulinux/
 # http://seguesoft.com/how-to-set-up-netopeer-server-to-use-with-netconfc
+
+
 # OpenYuma
 # sudo apt-get install libxml2-dev libxmlt1-dev libssl-dev
 # tar -xvf libssh2-1.8.0.tar.gz
