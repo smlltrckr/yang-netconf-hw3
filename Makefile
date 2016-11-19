@@ -17,15 +17,19 @@ all: $(TARGETS)
 
 openyuma: 
 	git clone $(OPENYUMA)
-
+	
 libnetconf: 
 	git clone $(LIBNETCONF)
+	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev libevent-dev
 
 netopeer: 
 	git clone $(NETOPEER)
 
 pyang: 
 	git clone $(PYANG)
+
+dependencies:
+	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev
 
 rest: 
 	$(GG) clone $(REST) 
@@ -35,5 +39,16 @@ rest:
 # mv libssh2-1.8.0 libssh2
 # cd libssh2
 # ./configure
+# make
+# sudo make install
+
+# libssh
+# wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
+# unxz libssh-0.7.3.tar.xz
+# tar -xvf libssh-0.7.3.tar
+# cd libssh-0.7.3/
+# mkdir build
+# cd build/
+# cmake ..
 # make
 # sudo make install
