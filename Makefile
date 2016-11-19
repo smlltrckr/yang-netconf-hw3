@@ -20,7 +20,7 @@ openyuma:
 	
 libnetconf: 
 	git clone $(LIBNETCONF)
-	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev libevent-dev
+	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev libevent-dev xsltproc python-setuptools
 
 netopeer: 
 	git clone $(NETOPEER)
@@ -29,8 +29,22 @@ pyang:
 	git clone $(PYANG)
 
 dependencies:
-	sudo apt-get install libxml2-dev libxslt-dev openssl libdbus-1-dev doxygen libtool libtool-bin libcurl4-openssl-dev
-
+	sudo apt-get install libxml2-dev 
+	sudo apt-get install libxslt-dev
+	sudo apt-get install openssl 
+	sudo apt-get install libdbus-1-dev
+	sudo apt-get install doxygen 
+	sudo apt-get install libtool 
+	sudo apt-get install libtool-bin 
+	sudo apt-get install libcurl4-openssl-dev 
+	sudo apt-get install libevent-dev 
+	sudo apt-get install xsltproc 
+	sudo apt-get install python-setuptools
+	wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
+	unxz libssh-0.7.3.tar.xz
+	tar -xvf libssh-0.7.3.tar
+	cd libssh-0.7.3/ && mkdir build && cd build && cmake .. && make && sudo make install
+	
 rest: 
 	$(GG) clone $(REST) 
 # OpenYuma
