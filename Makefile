@@ -29,6 +29,7 @@ dependencies:
 	sudo apt-get install python-setuptools
 	sudo apt-get install zlib1g-dev
 	sudo apt-get install python-libxml2
+	sudo apt-get install openssh-server
 	wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
 	unxz libssh-0.7.3.tar.xz
 	tar -xvf libssh-0.7.3.tar
@@ -36,16 +37,24 @@ dependencies:
 
 pyang: 
 	git clone $(PYANG)
-	cd pyang && sudo python setup.py install
+	cd pyang/ && sudo python setup.py install
 
 libnetconf: 
 	git clone $(LIBNETCONF)
+	cd libnetconf/ && ./configure && make && sudo make install
 
 netopeer: 
 	git clone $(NETOPEER)
-	
+	cd netopeer/server/ && ./configure && make && sudo make install
+	sudo apt-get install libaugeas-dev
+	# cp netopeer/transAPI/cfgsystem/model/ietf-inet-types.yang
+	# sudo cp /home/sam/netopeer/server/config/datastore.xml /usr/local/etc/netopeer/cfgnetopeer/datastore.xml
+	cd netopeer/transAPI/cfgsystem && ./configure && make && sudo make install
+
 openyuma: 
 	git clone $(OPENYUMA)
+
+# http://seguesoft.com/how-to-set-up-netopeer-server-to-use-with-netconfc
 # OpenYuma
 # sudo apt-get install libxml2-dev libxmlt1-dev libssl-dev
 # tar -xvf libssh2-1.8.0.tar.gz
