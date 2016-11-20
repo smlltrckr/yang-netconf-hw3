@@ -22,7 +22,8 @@ dockerUbuntu1604:
 	sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
 	sudo apt-get install docker-engine
 	sudo service docker start
-	sudo docker run hello-world
+	# Test if installed correctly:
+	# sudo docker run hello-world
 
 pyang: 
 	git clone $(PYANG)
