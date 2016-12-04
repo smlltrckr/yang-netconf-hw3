@@ -1,0 +1,68 @@
+module net-topology {
+    namespace "localhost:8300";
+
+    prefix "net-topology";
+
+    organization "<TBD> Inc.";
+
+    contact
+        "Instructor: AP
+                    <Insert Contact Info Here>
+
+        Developer:  DT
+                    <Insert Contect Info Here>
+                    
+        Developer:  SR
+                    <Insert Contact Info Here>
+        ";
+
+    description
+        "This module is part of an assignment for CS158B,
+         the goal is to familiarize ourselves with Netconf 
+         and Yang. The Module is to model that of a NETWORK 
+         TOPOLOGY which is a set of nodes where each node 
+         is connected to a subset of the nodes.";
+
+    revision 2016-12-03 {
+        description "Initial revision";
+    }
+
+    typedef percent {
+        type uint8 { range "0 .. 100";}
+        description "Percentage";
+    }
+/*
+    typedef ip-address {
+
+    }
+
+    typedef port-number {
+
+    }
+*/
+    grouping target-host {
+        leaf host-name {
+            type string;
+            description "Systems hostname";
+        }
+/*
+        leaf address {
+            type net-topology:ip-address;
+        }
+
+        leaf port {
+            type net-topology:port-number;
+        }
+*/
+    }
+
+    container host {
+        uses target-host;
+    }
+
+    container network-objects {
+        leaf obj1 {
+            type int32;
+        }
+    }
+} 
