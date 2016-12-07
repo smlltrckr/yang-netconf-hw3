@@ -29,7 +29,7 @@ pyang:
 	git clone $(PYANG)
 	sudo apt-get install python-setuptools
 	cd pyang/ && sudo python setup.py install
-
+	# json2xml pyang yang2sdl yang2html
 netopeer: 
 	git clone $(NETOPEER)
 	cd netopeer/ && sudo docker build -t netopeer .
