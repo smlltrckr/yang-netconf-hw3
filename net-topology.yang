@@ -73,7 +73,20 @@ module net-topology {
         }
 
     }
+	
+    leaf-list cipher {
+        type string;
+    }
 
+    list user {
+        key "username";
+        leaf login-name {
+            type string;
+        }
+        leaf fullname {
+            type string;
+        }
+    }   
     container host {
         uses target-host;
     }
