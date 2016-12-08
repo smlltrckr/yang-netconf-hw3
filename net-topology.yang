@@ -80,7 +80,7 @@ module net-topology {
 
     list user {
         key "username";
-        leaf login-name {
+        leaf username {
             type string;
         }
         leaf fullname {
